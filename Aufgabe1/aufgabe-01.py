@@ -66,9 +66,25 @@ def cal_Streck_PQ(hoehe_P, ApPp, hoehe_Q, ApQp) -> float:
 
 
 if __name__ == "__main__":
-    ll = [48.43, 40.06, 39.46, 47.20, 56.15, 58.08, 51.23, 41.88, 38.64, 44.48, 42.08]
+    ll = [48.43, 40.06, 39.46, 47.20, 56.15, 
+          58.08, 51.23, 41.88, 38.64, 44.48, 
+          42.08, 38.64, 44.48, 54.03, 58.52,
+          53.81, 44.24, 38.60, 42.08, 51.48,
+          58.16, 55.97, 46.93, 39.35, 40.20,
+          48.70, 57.03]
     hA = 23.06
-    print("ind.W H-Gerät    HP         HQ         HB          Schr.str. PQ")
+    
+    fmtd = 7
+    fmtk = 3
+    w = fmtd + 1
+    cols = [("ind.W", "{:5s}"), ("H-Gerät", f"{{:>{w}s}}"), 
+            ("HP", f"{{:>{w}s}}"), ("HQ", f"{{:>{w}s}}"), 
+            ("HB", f"{{:>{w}s}}"), ("PQ", f"{{:>{w}s}}")]
+    header = ""
+    for c in cols:
+        header += c[1].format(c[0])
+    print(header)
+
     for l in ll:
         ptA = Punkt(0, 85.87, l)
         ptB = Punkt(118.32 , 84.98, 48.52)
@@ -80,8 +96,8 @@ if __name__ == "__main__":
         (hoehe_P, ApPp) = cal_hoehe_Ptk(ptP, SAp, alpha, sin_alpha, h)
         (hoehe_Q, ApQp) = cal_hoehe_Ptk(ptQ, SAp, alpha, sin_alpha, h)
         PQ = cal_Streck_PQ(hoehe_P, ApPp, hoehe_Q, ApQp)
-        result = f"{l:5.2f} {h:10.7f} {hoehe_P:10.7f} {hoehe_Q:10.7f} {hB:10.7f} {PQ:10.7f}"
-        print(result)
+        result = f"{{:5.2f}} {{:>{fmtd}.{fmtk}f}} {{:{fmtd}.{fmtk}f}} {{:{fmtd}.{fmtk}f}} {{:{fmtd}.{fmtk}f}} {{:{fmtd}.{fmtk}f}}"
+        print( result.format(l, h, hoehe_P, hoehe_Q, hB, PQ ) )
 
 
 
