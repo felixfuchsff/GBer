@@ -79,12 +79,12 @@ if __name__ == "__main__":
     w = fmtd + 1
     cols = [("ind.W", "{:5s}"), ("H-Gerät", f"{{:>{w}s}}"), 
             ("HP", f"{{:>{w}s}}"), ("HQ", f"{{:>{w}s}}"), 
-            ("HB", f"{{:>{w}s}}"), ("PQ", f"{{:>{w}s}}")]
+            ("HB", f"{{:>{w}s}}"), ("PQ", f"{{:>{w-1}s}}")]
     header = ""
     for c in cols:
         header += c[1].format(c[0])
     print(header)
-
+    result_template = f"{{:5.2f}} {{:>{fmtd}.{fmtk}f}} {{:{fmtd}.{fmtk}f}} {{:{fmtd}.{fmtk}f}} {{:{fmtd}.{fmtk}f}} {{:{fmtd-1}.{fmtk}f}}"
     for l in ll:
         ptA = Punkt(0, 85.87, l)
         ptB = Punkt(118.32 , 84.98, 48.52)
@@ -96,8 +96,7 @@ if __name__ == "__main__":
         (hoehe_P, ApPp) = cal_hoehe_Ptk(ptP, SAp, alpha, sin_alpha, h)
         (hoehe_Q, ApQp) = cal_hoehe_Ptk(ptQ, SAp, alpha, sin_alpha, h)
         PQ = cal_Streck_PQ(hoehe_P, ApPp, hoehe_Q, ApQp)
-        result = f"{{:5.2f}} {{:>{fmtd}.{fmtk}f}} {{:{fmtd}.{fmtk}f}} {{:{fmtd}.{fmtk}f}} {{:{fmtd}.{fmtk}f}} {{:{fmtd}.{fmtk}f}}"
-        print( result.format(l, h, hoehe_P, hoehe_Q, hB, PQ ) )
+        print( result_template.format(l, h, hoehe_P, hoehe_Q, hB, PQ ) )
 
 
 
