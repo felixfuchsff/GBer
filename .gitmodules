@@ -1,0 +1,3 @@
+[submodule "gberweb"]
+	path = gberweb
+	url = git@github.com-ff:felixfuchsff/gberweb.git

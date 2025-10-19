@@ -18,28 +18,28 @@ class Punkt(NamedTuple):
     z: float
 
     """ Schrägstreck von Standort zu dem Punkt"""
-    s: float
+    s: float|None
 
 
 def cal_geraete_hoehe(ptA:Punkt, hA: float) -> (float, float):
-    SAp = ptA.s * Sin(ptA.z)
-    AAp = ptA.s * Cos(ptA.z)
-    h = hA - AAp
-    return (h, SAp)
+    strecke_SAp = ptA.s * Sin(ptA.z)
+    strecke_AAp = ptA.s * Cos(ptA.z)
+    h = hA - strecke_AAp
+    return h, strecke_SAp
 
 
 def cal_hoehe_B(ptB: Punkt, h: float) -> (float, float):
-    BBp = ptB.s * Cos(ptB.z)
-    hB = h + BBp
+    strecke_BBp = ptB.s * Cos(ptB.z)
+    hB = h + strecke_BBp
     return hB, ptB.s * Sin(ptB.z)
 
 
-def cal_alpha(SAp: float, SBp: float, ptB:Punkt) -> float:
+def cal_alpha(SAp: float, SBp: float, ptB:Punkt) -> (float,float):
     """
     """
     sqrt_term = SAp**2 + SBp**2 - 2*SAp*SBp*Cos(ptB.r)
-    ApBp = sqrt(sqrt_term)
-    sin_alpha = Sin(ptB.r) * SBp / ApBp
+    strecke_ApBp = sqrt(sqrt_term)
+    sin_alpha = Sin(ptB.r) * SBp / strecke_ApBp
     alpha = r2g( asin(sin_alpha) )
     return alpha, sin_alpha
 
@@ -52,15 +52,15 @@ def cal_hoehe_Ptk(ptP: Punkt, SAp: float, alpha: float, sin_alpha: float, h: flo
         @param h: Höhe vom Gerät
     """
     gamma = 200 - alpha - ptP.r
-    SPp = SAp * sin_alpha / Sin(gamma)
-    PPp = SPp * Tan(100 - ptP.z)
-    hoehe_P = PPp + h
-    ApPp = SAp / Sin(gamma) * Sin(ptP.r)
-    return (hoehe_P, ApPp)
+    strecke_SPp = SAp * sin_alpha / Sin(gamma)
+    strecke_PPp = strecke_SPp * Tan(100 - ptP.z)
+    hoehe_P = strecke_PPp + h
+    strecke_ApPp = SAp / Sin(gamma) * Sin(ptP.r)
+    return hoehe_P, strecke_ApPp
 
 
-def cal_Streck_PQ(hoehe_P, ApPp, hoehe_Q, ApQp) -> float:
-    dy = ApQp - ApPp
+def cal_Streck_PQ(hoehe_P, strecke_ApPp, hoehe_Q, strecke_ApQp) -> float:
+    dy = strecke_ApQp - strecke_ApPp
     dx = hoehe_Q - hoehe_P
     return sqrt(dy**2 + dx**2)
 
