@@ -11,6 +11,6 @@ deploy:
 	cp -rfv dist/* $(TARGET)
 	git log -n 2 > $(TARGET)/version.txt
 	git -C $(TARGET) add .
-	git -C $(TARGET) commit -a -m "Auto deploy `date --iso-8601=ns`"
+	git -C $(TARGET) commit -a -m "Auto deploy `date --iso-8601=seconds`"
 	git -C $(TARGET) push --force origin master
 
