@@ -15,7 +15,7 @@ Aufgaben die auch in TypeScript implementiert sind, kann man online probieren:
 ### Python
 
 Jeweilige Aufgaben sind in einem eigenen Ordner unter `src` implementiert.
-Es gibt ein gemeinsames Pythonmodul `geodeasy.py` in  `src`, wo gängige Funktionen implementiert sind.
+Es gibt ein gemeinsames Pythonmodul `geodesy.py` in  `src`, wo gängige Funktionen implementiert sind.
 Dieses Modul ist dann soft-linked in jeweiligen Aufgabe-Ordner, dadurch wird Verwaltungsarbeit reduziert. 
 
 Eine Python-Aufgabe lässt sich etwa durch 
