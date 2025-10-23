@@ -14,6 +14,21 @@ Aufgaben die auch in TypeScript implementiert sind, kann man online probieren:
 
 ### Python
 
+#### Einmalige Arbeit
+
+Bibliotheken können via `pip` installiert werden. 
+Zu empfehlen ist eine Nutzung von einer virtuellen Umgebung:
+
+```shell
+# Einmalig auszuführen
+cd src
+python -m venv .venv
+source .venv/bin/active
+pip install --requirement requirement.txt
+```
+
+#### Skript ausführen
+
 Jeweilige Aufgaben sind in einem eigenen Ordner unter `src` implementiert.
 Es gibt ein gemeinsames Pythonmodul `geodesy.py` in  `src`, wo gängige Funktionen implementiert sind.
 Dieses Modul ist dann soft-linked in jeweiligen Aufgabe-Ordner, dadurch wird Verwaltungsarbeit reduziert. 
@@ -21,8 +36,15 @@ Dieses Modul ist dann soft-linked in jeweiligen Aufgabe-Ordner, dadurch wird Ver
 Eine Python-Aufgabe lässt sich etwa durch 
 
 ```bash
-cd 01-Aufgabe
-python dreieckbrechnungen.py
+python 01-dreieckbrechnungen.py
+```
+
+#### Unittest
+
+```shell
+pytest -s
+#                   -s   disable all capture → show print in console
+# --log-cli-level=INFO   set log-level to INFO 
 ```
 
 ### Typescript
