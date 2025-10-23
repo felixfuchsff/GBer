@@ -45,7 +45,7 @@ def cal_Gauss_area(points:[Pkt]) -> float:
     return f
 
 
-def cal_zentriwinkel_bisection(a, s, epsilon=1E-5, iteration=200) -> (float, float):
+def cal_zentriwinkel_bisection(a, s, epsilon=1E-5, iteration=200) -> (float, float, float):
     """
         @param a: Flächeninhalt des Kreissegmentes, auch Kreisabschnittsfläche genannt
         @param s: Sehnenlänge
@@ -61,14 +61,11 @@ def cal_zentriwinkel_bisection(a, s, epsilon=1E-5, iteration=200) -> (float, flo
         alpha = (right + left) / 2
         lhs = (alpha - sin(alpha)) / (sin(alpha/2)**2)
         diff = lhs - RHS
-        print(f"count {count} right: {right} left: {left} alpha: {alpha} lhs: {lhs} diff : {diff}")
-        if abs(diff) < epsilon:
-            break
-        if diff < 0:
-            left = alpha
-        if diff > 0:
-            right = alpha
-    return alpha, diff
+        if abs(diff) < epsilon: break
+        if diff < 0: left = alpha
+        if diff > 0: right = alpha
+    print(f"count {count} right: {right} left: {left} alpha: {alpha} lhs: {lhs} diff : {diff}")
+    return alpha, diff, count
 
 
 
