@@ -19,18 +19,28 @@ pG3 = Pkt(64.71,14.86)
 pG4 = Pkt(15.48,14.86)
 
 
-leftPolygon = [pG2, pF, pE, pD, pC, pB, pA, pG1]
-fLhs = cal_Gauss_area(leftPolygon) / 2
-print(fLhs)
+def cal_flaeche():
+    leftPolygon = [pG2, pF, pE, pD, pC, pB, pA, pG1]
+    fLhs = cal_Gauss_area(leftPolygon) / 2
+    print(fLhs)
 
 
-rightPolygon = [pG4, pA, pB, pC, pD, pE, pF, pG3]
-fRhs = cal_Gauss_area(rightPolygon) / 2
-print(fRhs)
+    rightPolygon = [pG4, pA, pB, pC, pD, pE, pF, pG3]
+    fRhs = cal_Gauss_area(rightPolygon) / 2
+    print(fRhs)
 
-f = fLhs + fRhs
-print(f)
-
-
+    f = fLhs + fRhs
+    print(f)
 
 
+def cal_radius_gleich_glaeche():
+    a = 100.1214
+    s = 49.245363
+    alpha, diff, iterations = cal_zentriwinkel_bisection(a, s, epsilon=1e-13, iteration=40)
+    radius = s/2/sin(alpha/2)
+    print(alpha, diff, iterations)
+    print(radius)
+
+
+if __name__ == "__main__":
+    cal_radius_gleich_glaeche()

@@ -10,8 +10,10 @@ def test_circular_segment_area():
 def test_cal_zentriwinkel_bisection():
     a = 100.1214
     s = 49.245363
-    alpha = cal_zentriwinkel_bisection(a, s,epsilon=1e-8)
+    alpha,_,_ = cal_zentriwinkel_bisection(a, s,epsilon=1e-8)
     print(alpha)
+    r = s/2/sin(alpha/2)
+    print(r)
 
 
 if __name__ == "__main__":

@@ -64,7 +64,6 @@ def cal_zentriwinkel_bisection(a, s, epsilon=1E-5, iteration=200) -> (float, flo
         if abs(diff) < epsilon: break
         if diff < 0: left = alpha
         if diff > 0: right = alpha
-    print(f"count {count} right: {right} left: {left} alpha: {alpha} lhs: {lhs} diff : {diff}")
     return alpha, diff, count
 
 
